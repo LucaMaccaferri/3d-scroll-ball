@@ -9,9 +9,28 @@ body {
   overflow-x: hidden;
 }
 
+.intro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.titolo{
+  font-size: 5rem;
+}
+
+.sottotitolo{
+  font-size:2rem;
+}
+
 canvas {
   width: 100vw;
   height: 100vh;
+  padding-left:20%;
+  padding-right:20%;
+  background-color: black;
   object-fit: cover;
 }
 
@@ -43,4 +62,17 @@ canvas {
   h1 {
     font-size: 2rem;
   }
+}
+
+@media screen and (max-width: 600px) {
+  canvas {
+   padding: 0; 
+  }
+  .titolo{
+    font-size: 3rem;
+  }
+  .sottotitolo{
+    font-size: 1rem;
+  }
+  
 }

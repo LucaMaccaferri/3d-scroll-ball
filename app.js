@@ -3,9 +3,23 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const context = canvas.getContext("2d");
-const frameCount = 179;
+const frameCount = 300;
 
-const currentFrame = (index) => `./best-ball/${(index + 1).toString()}.jpg`;
+function getlength(number) {
+  return number.toString().length;
+}
+
+const currentFrame = (index) => {
+   const nOfNumber = getlength(index + 1)
+   const nOfZero = 4 - nOfNumber
+   let zeri = ""
+   for (let i = 0; i < nOfZero; i++) {
+     zeri = zeri + "0"
+   }
+   const number = index + 1
+   console.log(zeri , number)
+   return `./frame/${( zeri + number).toString()}.png`
+  };
 
 const images = [];
 let ball = { frame: 0 };
@@ -57,3 +71,23 @@ function render() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(images[ball.frame], 0, 0);
 }
+
+/*function checkScroll() {
+  // Calcola la posizione dello scorrimento
+  var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+  // Ottieni l'altezza del div iniziale
+  var introDivHeight = document.getElementById('intro-div').offsetHeight;
+
+  // Verifica se lo scorrimento supera l'altezza del div iniziale
+  if (scrollPosition > introDivHeight) {
+    // Mostra il canvas
+    document.getElementById('my-canvas').style.display = 'block';
+  }
+}
+
+// Aggiungi l'evento di scorrimento per chiamare la funzione checkScroll
+window.onscroll = function() {
+  checkScroll();
+};
+*/
