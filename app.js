@@ -18,7 +18,7 @@ const currentFrame = (index) => {
    }
    const number = index + 1
    console.log(zeri , number)
-   return `./frame/${( zeri + number).toString()}.png`
+   return `./animazione/${( zeri + number).toString()}.jpg`
   };
 
 const images = [];
@@ -71,23 +71,3 @@ function render() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(images[ball.frame], 0, 0);
 }
-
-/*function checkScroll() {
-  // Calcola la posizione dello scorrimento
-  var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-  // Ottieni l'altezza del div iniziale
-  var introDivHeight = document.getElementById('intro-div').offsetHeight;
-
-  // Verifica se lo scorrimento supera l'altezza del div iniziale
-  if (scrollPosition > introDivHeight) {
-    // Mostra il canvas
-    document.getElementById('my-canvas').style.display = 'block';
-  }
-}
-
-// Aggiungi l'evento di scorrimento per chiamare la funzione checkScroll
-window.onscroll = function() {
-  checkScroll();
-};
-*/

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="./style.css" />
+    <title>Gsap Flip</title>
+</head>
+
+<body>
+    <form id="intro-div" class="intro">
+        <input type="file">
+        <button>ivos</button>
+    </form>
+    <script type="module">
+        import squooshlib from 'https://cdn.jsdelivr.net/npm/@squoosh/lib@0.5.3/+esm'
+        const form = document.querySelector('form');
+        form.addEventListener('submit', handleSubmit);
+
+        /** @param {Event} event */
+        async function handleSubmit(event) {
+            event.preventDefault();
+            console.log(event)
+            const imagePool = new ImagePool();
+
+            // Accepts both file paths and Buffers/TypedArrays.
+            const image = imagePool.ingestImage("./squoosh.jpeg");
+
+            // Optional.
+            // await image.preprocess({
+            //   resize: {
+            //     enabled: true,
+            //     width: 128,
+            //   },
+            // });
+
+            await image.encode({
+                // All codecs are initialized with default values
+                // that can be individually overwritten.
+                mozjpeg: {
+                    quality: 10,
+                },
+                avif: {
+                    cqLevel: 10,
+                },
+                jxl: {},
+            });
+
+            const { extension, binary } = await image.encodedWith.mozjpeg;
+            await fs.writeFile(`output.${extension}`, binary);
+            // ... same for other encoders ...
+
+            await imagePool.close();
+        }
+    </script>
+</body>
+
+</html>
